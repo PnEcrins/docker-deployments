@@ -1,0 +1,24 @@
+services:
+  app:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.otherapp.rule=Host(`localhost`) && PathPrefix(`/test`)"
+      - "traefik.http.routers.otherapp.entrypoints=web"
+    networks:
+      - local_network
+    depends_on: !reset null
+  nginx: !reset null
+  mkcert: !reset null
+  certbot: !reset null
+  db: !reset null
+  geodb: !reset null
+
+  # geodb: !reset null
+  # db: !reset null
+
+
+networks:
+  local_network:
+    external: true
+    name: local_network
+  
